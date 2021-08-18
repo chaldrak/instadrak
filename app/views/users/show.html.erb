@@ -1,0 +1,2 @@
+<%= @user.name %>
+<%= link_to "Déconnexion", session_path(current_user.id), method: :delete, class:"btn btn-danger navbar-btn btn-xs", data: { confirm: 'Au revoir et à la prochaine !!!' } %>
