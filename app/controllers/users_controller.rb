@@ -6,6 +6,17 @@ class UsersController < ApplicationController
     redirect_to user_path(current_user) if current_user
   end
 
+  def edit
+    @user = current_user
+  end
+
+  def confirm
+    @user = current_user
+  end
+
+  def update
+  end
+
   def show
     @user = User.find(params[:id])
   end

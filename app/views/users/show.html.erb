@@ -17,7 +17,7 @@
                                     <h2><%= current_user.username %></h2>
                                 </td>
                                 <td>
-                                    <button class="btn btn-default btn-sm">Modifier profil</button>
+                                    <%= link_to "Modifier profil", edit_user_path(current_user), class: "btn btn-default btn-sm"%>
                                 </td>
                             </tr>
                         </table>
@@ -26,7 +26,7 @@
                         <table>
                             <tr>
                                 <td>
-                                    <p><strong>8</strong> publications</p>
+                                    <p><strong><%= pluralize(get_current_user_post.count, 'Publication', 'Publications') %></strong></p>
                                 </td>
                                 <td>
                                     <p><strong>128</strong> abonnés</p>
@@ -41,7 +41,12 @@
                 </div>
             </div>
         </div>
-        <% 10.times do %>
+        <% if get_current_user_post.size == 0 %>
+        <div class="alert alert-warning text-center">
+            <p>Aucune publication trouvée...</p>
+        </div>
+        <% end %>
+        <% get_current_user_post.each do |post| %>
         <div class="row second-line-profile">
             <div class="col-xs-12 panel">
                 <div class="panel-heading" style="display:flex;justify-content:space-between">
@@ -55,7 +60,7 @@
                     </div>
                 </div>
                 <div class="panel-body" style="padding: 0;margin: 0;">
-                    <img src="/images/1024px-Instagram_logo.svg.png" alt="" width="100%">
+                    <%= image_tag post.photo.url, width: "100%", alt: "" if post.photo %>
                 </div>
             </div>
         </div>
