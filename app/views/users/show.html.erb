@@ -1,2 +1,69 @@
-<%= @user.name %>
-<%= link_to "Déconnexion", session_path(current_user.id), method: :delete, class:"btn btn-danger navbar-btn btn-xs", data: { confirm: 'Au revoir et à la prochaine !!!' } %>
+<%= render "partials/header" %>
+
+<div class="index-all">
+    <div class="container page">
+        <div class="row first-line-profile">
+            <div class="col-sm-4">
+                <div class="profil-pic-big">
+                    <img src="/images/autocollants-logo-instagram.png" alt="" width="100%">
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div>
+                    <div>
+                        <table>
+                            <tr>
+                                <td>
+                                    <h2><%= current_user.username %></h2>
+                                </td>
+                                <td>
+                                    <button class="btn btn-default btn-sm">Modifier profil</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div>
+                        <table>
+                            <tr>
+                                <td>
+                                    <p><strong>8</strong> publications</p>
+                                </td>
+                                <td>
+                                    <p><strong>128</strong> abonnés</p>
+                                </td>
+                                <td>
+                                    <p><strong>45</strong> abonnements</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <h4><strong><%= current_user.name %></strong></h4>
+                </div>
+            </div>
+        </div>
+        <% 10.times do %>
+        <div class="row second-line-profile">
+            <div class="col-xs-12 panel">
+                <div class="panel-heading" style="display:flex;justify-content:space-between">
+                    <div>
+                        <strong style="color: rgb(163, 10, 10);font-size: 2rem;">42 <span class="glyphicon glyphicon-heart"></span></strong>
+                    </div>
+                    <div class="btn-group" role="group" aria-label="...">
+                        <button type="button" class="btn btn-default">View</button>
+                        <button type="button" class="btn btn-info">Edit</button>
+                        <button type="button" class="btn btn-danger">Delete</button>
+                    </div>
+                </div>
+                <div class="panel-body" style="padding: 0;margin: 0;">
+                    <img src="/images/1024px-Instagram_logo.svg.png" alt="" width="100%">
+                </div>
+            </div>
+        </div>
+        <% end %>
+
+        <div class="row text-justify" style="margin: 0px 0 50px 0;"></div>
+    </div>
+
+    <%= render "partials/footer" %>
+
+</div>

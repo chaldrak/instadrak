@@ -142,6 +142,13 @@ footer span{
     overflow: hidden;
     border: 1px solid lightgray;
 }
+.profil-pic-small{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 1px solid lightgray;
+}
 .first-line-profile td{
     padding-right: 10px;
 }
