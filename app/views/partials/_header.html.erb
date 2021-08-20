@@ -43,7 +43,11 @@
             <li>
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                     <div class="profil-pic-small">
-                        <img src="/images/autocollants-logo-instagram.png" alt="" width="100%">
+                        <% if current_user.photo.url %>
+                        <%= image_tag current_user.photo.url, width: "100%" %>
+                        <% else %>
+                        <%= image_tag "/images/user_insta.png", width: "100%" %>
+                        <% end %>
                     </div>
                 </a>
                 <ul class="dropdown-menu">

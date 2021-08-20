@@ -7,14 +7,19 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = current_user
+    @user = User.find(params[:id])
   end
 
   def confirm
-    @user = current_user
   end
 
   def update
+    @user = User.find(params[:id])
+    if @user.update(user_photo_params)
+      redirect_to :show
+    else
+      render "edit"
+    end
   end
 
   def show
@@ -24,7 +29,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-        redirect_to sessions_new_path
+        redirect_to new_session_path
         flash[:success] = "Compte créé avec succès. Veuillez vous connecter"
     else
         render :new
@@ -33,6 +38,10 @@ class UsersController < ApplicationController
 
   private
   def user_params
-      params.require(:user).permit(:name, :username, :email, :password)
+      params.require(:user).permit(:name, :username, :email, :password,:photo, :photo_cache)
+  end
+
+  def user_photo_params
+    params.require(:user).permit(:photo, :photo_cache)
   end
 end

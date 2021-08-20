@@ -5,16 +5,16 @@
         </div>
         <div class="panel second-line">
             <div class="panel-heading" style="border: 0;">
-                 <%= form_with(model: @user, local: true) do |form| %>
-                    <div class="profil-pic-big">
-                        <%= image_tag @user.photo.url, width: "100%" if @user.image && @user.image.url%>
-                    </div>
-                    <hr>
-                    <div>
-                        <%= form.submit "Valider", class: "btn btn-info"%>
-                        <%= form.submit "Annuler", class: "btn btn-default"%>
-                    </div> 
-                <% end %>  
+                <div class="profil-pic-big">
+                    <%= image_tag @user.photo.url, width: "100%" %>
+                </div>
+                <hr>
+                <div>
+                    <form action="">
+                        <button class="btn btn-info">Valider</button>
+                        <button class="btn btn-default">Annuler</button>
+                    </form>
+                </div>   
             </div>
         </div>
         <div class="row text-justify" style="margin: 0px 0 50px 0;"></div>

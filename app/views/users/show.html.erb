@@ -5,7 +5,11 @@
         <div class="row first-line-profile">
             <div class="col-sm-4">
                 <div class="profil-pic-big">
-                    <img src="/images/autocollants-logo-instagram.png" alt="" width="100%">
+                    <% if current_user.photo.url %>
+                    <%= image_tag current_user.photo.url, width: "100%" %>
+                    <% else %>
+                    <%= image_tag "/images/user_insta.png", width: "100%" %>
+                    <% end %>
                 </div>
             </div>
             <div class="col-sm-8">
@@ -26,13 +30,13 @@
                         <table>
                             <tr>
                                 <td>
-                                    <p><strong><%= pluralize(get_current_user_post.count, 'Publication', 'Publications') %></strong></p>
+                                    <p><strong><%= get_current_user_post.count %></strong> <%= pluralize(get_current_user_post.count, 'Publication', 'Publications').split(' ')[1] %></p>
                                 </td>
                                 <td>
-                                    <p><strong>128</strong> abonnés</p>
+                                    <p><strong>0</strong> abonnés</p>
                                 </td>
                                 <td>
-                                    <p><strong>45</strong> abonnements</p>
+                                    <p><strong>0</strong> abonnements</p>
                                 </td>
                             </tr>
                         </table>
@@ -41,6 +45,7 @@
                 </div>
             </div>
         </div>
+        <%= render "partials/flash" %>
         <% if get_current_user_post.size == 0 %>
         <div class="alert alert-warning text-center">
             <p>Aucune publication trouvée...</p>
@@ -54,9 +59,9 @@
                         <strong style="color: rgb(163, 10, 10);font-size: 2rem;">42 <span class="glyphicon glyphicon-heart"></span></strong>
                     </div>
                     <div class="btn-group" role="group" aria-label="...">
-                        <button type="button" class="btn btn-default">View</button>
-                        <button type="button" class="btn btn-info">Edit</button>
-                        <button type="button" class="btn btn-danger">Delete</button>
+                        <%= link_to 'Show', post, class: "btn btn-default btn-sm" %>
+						<%= link_to 'Edit', edit_post_path(post), class: "btn btn-info btn-sm" %>
+						<%= link_to 'Delete', post, method: :delete, class: "btn btn-danger btn-sm", data: { confirm: 'Vous êtes sûr de vouloir supprimer cette publication ?' } %>
                     </div>
                 </div>
                 <div class="panel-body" style="padding: 0;margin: 0;">

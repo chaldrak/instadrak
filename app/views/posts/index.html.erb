@@ -47,7 +47,11 @@
                     <tr>
                         <td>
                             <div class="profil-pic">
-                                <img src="/images/autocollants-logo-instagram.png" alt="" width="100%">
+                                <% if post.user.photo.url %>
+                                <%= image_tag post.user.photo.url, width: "100%" %>
+                                <% else %>
+                                <%= image_tag "/images/user_insta.png", width: "100%" %>
+                                <% end %>
                             </div>  
                         </td>
                         <td>

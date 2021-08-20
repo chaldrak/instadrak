@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
   before_action :get_all_post, only: %i[ index create confirm ]
+  before_action :save_post, only: %i[ create confirm ]
 
   def index
     @post = Post.new
@@ -13,11 +14,15 @@ class PostsController < ApplicationController
   end
 
   def update
-    if @post.update(post_params)
-      flash[:info] = "Publication modifiée avec succès !!!"
+    if params[:Back]
       redirect_to user_path(current_user)
     else
-      render "edit"
+      if @post.update(post_params)
+        flash[:info] = "Publication modifiée avec succès !!!"
+        redirect_to user_path(current_user)
+      else
+        render "edit"
+      end
     end
   end
 
@@ -28,13 +33,12 @@ class PostsController < ApplicationController
   end
 
   def confirm
-    @post = current_user.posts.build(post_params)
     render "posts/index" if @post.invalid?
   end
 
   def create
-    @post = current_user.posts.build(post_params)
-    if params[:back]
+    
+    if params[:Back]
       render "index"
     else
       if @post.save
@@ -57,5 +61,9 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:photo, :photo_cache, :content)
+  end
+
+  def save_post
+    @post = current_user.posts.build(post_params)
   end
 end
