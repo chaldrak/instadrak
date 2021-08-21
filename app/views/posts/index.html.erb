@@ -59,7 +59,14 @@
                         </td>
                     </tr>
                 </table>
-                <button class="btn btn-default col-xs" title="Ajouter aux favoris"><span class="glyphicon glyphicon-thumbs-up"></span></button>
+                <% unless post.user == current_user %>
+                    <% if post.favorite_users.include?(current_user) %>
+                        <% favorite = current_user.favorites.find_by(post_id: post.id) %>
+                        <a class="btn btn-warning col-xs" rel="nofollow" data-method="delete" href="/favorites/<%= favorite.id %>" title="Retirer des favoris"><span class="glyphicon glyphicon-thumbs-down"></span></a>
+                    <% else  %>
+                        <a class="btn btn-default col-xs" rel="nofollow" data-method="post" href="/favorites?post_id=<%= post.id %>" title="Ajouter aux favoris"><span class="glyphicon glyphicon-thumbs-up"></span></a>
+                    <% end  %>
+                <% end %>
             </div>
             <div class="panel-body" style="padding: 0;margin: 0;">
                 <%= image_tag post.photo.url, width: "100%", alt: "" if post.photo %>

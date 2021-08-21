@@ -1,0 +1,12 @@
+<table>
+    <tr>
+        <th>user</th>
+        <th>post</th>
+    </tr>
+    <% @favorites.each do |favorite| %>
+    <tr>
+        <td><%= image_tag favorite.post.photo.url, width: 100%></td>
+        <td><%= favorite.post.content %></td>
+    </tr>
+    <% end %>
+</table>

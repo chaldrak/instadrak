@@ -33,7 +33,7 @@
                                     <p><strong><%= get_current_user_post.count %></strong> <%= pluralize(get_current_user_post.count, 'Publication', 'Publications').split(' ')[1] %></p>
                                 </td>
                                 <td>
-                                    <p><strong>0</strong> abonnés</p>
+                                    <p><strong><%= @favorites.count %></strong> favoris</p>
                                 </td>
                                 <td>
                                     <p><strong>0</strong> abonnements</p>
@@ -56,7 +56,7 @@
             <div class="col-xs-12 panel">
                 <div class="panel-heading" style="display:flex;justify-content:space-between">
                     <div>
-                        <strong style="color: rgb(163, 10, 10);font-size: 2rem;">42 <span class="glyphicon glyphicon-heart"></span></strong>
+                        <strong style="color: rgb(163, 10, 10);font-size: 2rem;"><%= post.favorites.count %> <span class="glyphicon glyphicon-heart"></span></strong>
                     </div>
                     <div class="btn-group" role="group" aria-label="...">
                         <%= link_to 'Show', post, class: "btn btn-default btn-sm" %>
