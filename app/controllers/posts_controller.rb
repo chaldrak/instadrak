@@ -42,6 +42,7 @@ class PostsController < ApplicationController
       render "index"
     else
       if @post.save
+        PostMailer.with(user: current_user).post_created.deliver_now
         redirect_to posts_path
         flash[:success] = "Publication enrégistrée !!!"
       else
