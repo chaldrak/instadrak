@@ -15,8 +15,9 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update(user_photo_params)
-      redirect_to :show
+    if @user.update(user_params)
+      flash[:info] = "Profil modifié avec succès !!!"
+      redirect_to user_path(current_user)
     else
       render "edit"
     end
@@ -41,7 +42,7 @@ class UsersController < ApplicationController
       params.require(:user).permit(:name, :username, :email, :password,:photo, :photo_cache)
   end
 
-  def user_photo_params
-    params.require(:user).permit(:photo, :photo_cache)
+  def user_params_without_pwd
+    params.require(:user).permit(:name, :username, :email,:photo, :photo_cache)
   end
 end
