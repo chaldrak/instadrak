@@ -14,5 +14,5 @@ Rails.application.routes.draw do
 
   resources :favorites, only: [:index, :create, :destroy, :show]
 
-  mount LetterOpenerWeb::Engine, at: "/inbox" if Rails.env.development?
+  mount LetterOpenerWeb::Engine, at: "/inbox"
 end
